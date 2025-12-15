@@ -438,7 +438,7 @@ const App: React.FC = () => {
             <div className="text-center max-w-lg relative group">
               <div className="absolute inset-0 bg-wellness-lavender/20 rounded-full blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                <img
-                 src="Headshots/Sara.png"
+                 src="/Headshots/Sara.png"
                  alt="Sara"
                  className="w-48 h-48 mx-auto rounded-full object-cover shadow-2xl mb-6 border-4 border-white relative z-10"
                />
@@ -456,7 +456,7 @@ const App: React.FC = () => {
               {/* Poke */}
               <div className="text-center group">
                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden shadow-lg border-2 border-white mb-4 transition-transform group-hover:-translate-y-1">
-                   <img src="Headshots/Poke.png" alt="Poke" className="w-full h-full object-cover" />
+                   <img src="/Headshots/Poke.png" alt="Poke" className="w-full h-full object-cover" />
                  </div>
                  <h4 className="font-bold text-charcoal text-lg">Poke</h4>
                  <p className="text-sm text-charcoal/60 mt-1">Personal email assistant, vibing</p>
@@ -465,7 +465,7 @@ const App: React.FC = () => {
                {/* ChatGPT */}
               <div className="text-center group">
                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden shadow-lg border-2 border-white mb-4 transition-transform group-hover:-translate-y-1">
-                   <img src="Headshots/ChatGPT.png" alt="ChatGPT" className="w-full h-full object-cover" />
+                   <img src="/Headshots/ChatGPT.png" alt="ChatGPT" className="w-full h-full object-cover" />
                  </div>
                  <h4 className="font-bold text-charcoal text-lg">ChatGPT</h4>
                  <p className="text-sm text-charcoal/60 mt-1">Second-opinion proofreader and portrait artist</p>
@@ -474,7 +474,7 @@ const App: React.FC = () => {
                {/* Gemini */}
               <div className="text-center group">
                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden shadow-lg border-2 border-white mb-4 transition-transform group-hover:-translate-y-1">
-                   <img src="Headshots/Gemini.png" alt="Gemini" className="w-full h-full object-cover" />
+                   <img src="/Headshots/Gemini.png" alt="Gemini" className="w-full h-full object-cover" />
                  </div>
                  <h4 className="font-bold text-charcoal text-lg">Gemini</h4>
                  <p className="text-sm text-charcoal/60 mt-1">Creative engine that turns research and results into interactive magic</p>
@@ -483,7 +483,7 @@ const App: React.FC = () => {
                {/* Claude */}
               <div className="text-center group">
                  <div className="w-24 h-24 mx-auto rounded-full overflow-hidden shadow-lg border-2 border-white mb-4 transition-transform group-hover:-translate-y-1">
-                   <img src="Headshots/Claude.png" alt="Claude" className="w-full h-full object-cover" />
+                   <img src="/Headshots/Claude.png" alt="Claude" className="w-full h-full object-cover" />
                  </div>
                  <h4 className="font-bold text-charcoal text-lg">Claude</h4>
                  <p className="text-sm text-charcoal/60 mt-1">Reliable project manager who organizes the chaos and documents everything</p>
