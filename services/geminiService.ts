@@ -18,32 +18,40 @@ Key Guidelines:
 4. Reference the journey: Question -> Export -> Exploration -> Insight.
 `;
 
-export const sendMessageToCoach = async (
-  message: string, 
-  history: { role: 'user' | 'model'; text: string }[]
-): Promise<string> => {
+// Bring-your-own-key: the visitor's Gemini key is used straight from their
+// browser to Google's API. It is never sent anywhere else and is only kept in
+// sessionStorage (gone when the tab closes). For local dev, VITE_GEMINI_API_KEY
+// in .env.local (gitignored) pre-fills it.
+export const KEY_STORAGE = 'dwtd-gemini-key';
+
+export function loadKey(): string {
   try {
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-      throw new Error("API Key not found in environment");
-    }
-
-    const ai = new GoogleGenAI({ apiKey });
-    
-    const chat = ai.chats.create({
-      model: 'gemini-2.5-flash',
-      config: {
-        systemInstruction: AI_COACH_SYSTEM_INSTRUCTION,
-      },
-    });
-
-    const response: GenerateContentResponse = await chat.sendMessage({ 
-      message: message 
-    });
-
-    return response.text || "I'm listening, but I couldn't quite find the words. Could you tell me more about what you're looking for?";
-  } catch (error) {
-    console.error("Gemini API Error:", error);
-    return "I'm having a moment of silence (connection error). Please check your API key.";
+    return sessionStorage.getItem(KEY_STORAGE) || (import.meta as any).env?.VITE_GEMINI_API_KEY || '';
+  } catch {
+    return (import.meta as any).env?.VITE_GEMINI_API_KEY || '';
   }
+}
+
+export function saveKey(key: string) {
+  try {
+    if (key) sessionStorage.setItem(KEY_STORAGE, key);
+    else sessionStorage.removeItem(KEY_STORAGE);
+  } catch { /* storage blocked: key lives only in memory for this visit */ }
+}
+
+export const sendMessageToCoach = async (
+  message: string,
+  history: { role: 'user' | 'model'; text: string }[],
+  apiKey: string,
+): Promise<string> => {
+  if (!apiKey) throw new Error("No API key");
+  const ai = new GoogleGenAI({ apiKey });
+  const chat = ai.chats.create({
+    model: 'gemini-2.5-flash',
+    config: { systemInstruction: AI_COACH_SYSTEM_INSTRUCTION },
+    // Skip the canned greeting; send the real back-and-forth so replies have context.
+    history: history.slice(1).map(m => ({ role: m.role, parts: [{ text: m.text }] })),
+  });
+  const response: GenerateContentResponse = await chat.sendMessage({ message });
+  return response.text || "I'm listening, but I couldn't quite find the words. Could you tell me more about what you're looking for?";
 };

@@ -32,7 +32,12 @@ npm install
 npm run dev   # http://localhost:3000
 ```
 
-The "ask the coach" chat calls the Gemini API and needs a key. Everything else runs without one.
+The **Reflection Guide** at the end of "Your Turn" has two modes:
+
+- **Demo** (default): scripted replies, no AI call, no key, nothing leaves the browser.
+- **Use my Gemini key**: paste your own key ([get one free](https://aistudio.google.com/apikey)) to chat with the live guide. The key goes straight from your browser to Google, is kept only in `sessionStorage`, and is gone when you close the tab.
+
+Running locally, you can skip pasting by putting `VITE_GEMINI_API_KEY=...` in `.env.local` (gitignored). Never set it in Vercel or any hosted build: Vite bakes `VITE_` variables into the public JavaScript.
 
 Built by one human and an AI team: Claude on processing and documentation, Gemini on the interactive UI, ChatGPT on proofreading and portraits.
 

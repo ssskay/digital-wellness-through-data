@@ -5,6 +5,7 @@ import { Sidebar } from './components/Sidebar';
 import { TwitterViz } from './components/visualizations/TwitterViz';
 import { YouTubeViz } from './components/visualizations/YouTubeViz';
 import { LinkedInViz } from './components/visualizations/LinkedInViz';
+import { Coach } from './components/Coach';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<SectionType>(SectionType.INTRO);
@@ -700,6 +701,17 @@ const App: React.FC = () => {
             </div>
           </div>
 
+          </div>
+
+          {/* TRY IT: Reflection Guide (demo, or bring your own Gemini key) */}
+          <div className="space-y-8 border-t border-charcoal/10 pt-16 mt-16">
+            <div className="text-center space-y-4">
+              <h3 className="text-3xl font-serif font-bold text-charcoal">Or Try the Reflection Guide</h3>
+              <p className="text-charcoal/60 text-lg max-w-2xl mx-auto">
+                Ask where to start with your own data. The demo runs on scripted answers; bring a Gemini key for the live guide.
+              </p>
+            </div>
+            <Coach />
           </div>
 
         </div>
